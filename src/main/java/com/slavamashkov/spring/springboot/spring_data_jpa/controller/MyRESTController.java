@@ -19,16 +19,14 @@ public class MyRESTController {
 
     @GetMapping("/employees")
     public List<Employee> showAllEmployees() {
-        List<Employee> allEmployees = employeeService.getAllEmployees();
 
-        return allEmployees;
+        return employeeService.getAllEmployees();
     }
 
     @GetMapping("/employees/{id}")
     public Employee getEmployee(@PathVariable int id) {
-        Employee employee = employeeService.getEmployee(id);
 
-        return employee;
+        return employeeService.getEmployee(id);
     }
 
     @PostMapping("/employees")
@@ -52,5 +50,10 @@ public class MyRESTController {
         employeeService.deleteEmployee(id);
 
         return "Employee with ID = " + id + " was deleted";
+    }
+
+    @GetMapping("/employees/name/{name}")
+    public List<Employee> showAllEmployeesByName(@PathVariable String name) {
+        return employeeService.findAllByName(name);
     }
 }
